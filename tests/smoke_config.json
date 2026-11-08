@@ -1,0 +1,8 @@
+{
+  "MODEL": {"enc_filters": [8, 16, 32, 64], "bottleneck_filters": 64, "dec_filters": [32, 32, 16, 8], "ag_inter": [16, 16, 8, 4]},
+  "TRAIN": {"epochs": 3, "batch": 4, "workers": 1},
+  "RUNS": {"full": [0, 1], "unet": [0], "att": [0], "full_nofocal": [0]},
+  "GROUP": {"k_cand": 10, "k_audit": 5},
+  "EVAL": {"n_boot": 200},
+  "WORKERS": 4
+}
