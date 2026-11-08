@@ -1,11 +1,5 @@
 # Attention U-Net segmentation of LC25000 trained on automatically generated masks
 
-Code for the manuscript
-
-> G. A. Sandag and A. O. Silitonga, "Attention U-Net Segmentation of Lung and Colon Histopathology Images
-> Trained on Automatically Generated Masks," *Journal of Technology Informatics and Engineering (JTIE)*,
-> under review.
-
 The study segments **automatically selected stained regions** in the LC25000 lung and colon histopathology
 images. Reference masks are produced by a deterministic image-processing pipeline (not by pathologists), the
 25,000 images are grouped back into their source tiles so that the training, validation, and test partitions are
@@ -16,19 +10,6 @@ not with a pathologist.
 All numbers and result figures of the manuscript are produced by this code:
 running [`notebooks/run_experiments_kaggle.ipynb`](notebooks/run_experiments_kaggle.ipynb) writes every value of
 Tables 5–11 to `outputs/report/results.md` (and `results.json`).
-
-## Where each part of the manuscript is implemented
-
-| Manuscript | What | Code |
-|---|---|---|
-| Section III.E, Table 3 | Automatic mask generator and coverage rule | [`lcseg/masks.py`](lcseg/masks.py), parameters in [`lcseg/config.py`](lcseg/config.py) `MASK` |
-| Section III.C, Table 2 | Source-tile grouping, source-disjoint 70/10/20 split, leakage audit | [`lcseg/grouping.py`](lcseg/grouping.py), `GROUP` |
-| Section III.F, Eq. 1–2, Table 4 | U-Net with attention gates and deep supervision | [`lcseg/model.py`](lcseg/model.py), `MODEL` |
-| Section III.G, Eq. 3, Table 4 | Combo loss, Adam, early stopping, learning-rate schedule, augmentation | [`lcseg/losses.py`](lcseg/losses.py), [`lcseg/train.py`](lcseg/train.py), [`lcseg/augment.py`](lcseg/augment.py), `TRAIN` |
-| Section III.H, Eq. 4–8 | Pooled and per-image metrics, boundary errors, image-level measures | [`lcseg/evaluate.py`](lcseg/evaluate.py), [`lcseg/report.py`](lcseg/report.py) |
-| Tables 5–8, 10, 11 | Results, threshold check, ablation, paired tests | [`lcseg/report.py`](lcseg/report.py) |
-| Table 9 | Parameters, GFLOPs, model size, latency, memory, generator time | `stage_bench` and `stage_generator` in [`lcseg/evaluate.py`](lcseg/evaluate.py) |
-| Figures 2, 4–7 | Masks, training curves, examples, failure cases, ablation | [`lcseg/figures.py`](lcseg/figures.py) |
 
 ## Running on Kaggle (recommended)
 
